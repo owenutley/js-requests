@@ -73,12 +73,18 @@ sayHelloButton.addEventListener('click', sayHello)
     
     Handle the promise that's returned with a .then, which you should pass a callback function to. Inside the callback function, console.log the response's data (in the intermediate instructions we'll come back to this function and add HTML).
 */ 
-
+const bodyE = document.querySelector('body')
 const ohMy = () => {
     // YOUR CODE HERE
     axios.get('http://localhost:3000/animals')
     .then(res => {
         console.log(res.data)
+        const newArr= (res.data)
+        for (let i = 0; i < newArr.length; i++){
+            const varI = document.createElement('p')
+            bodyE.appendChild(varI)
+            varI.textContent = newArr[i]
+        }
     })
 }
 
@@ -135,16 +141,17 @@ repeatButton.addEventListener('click', repeatMyParam)
 
 // CODE HERE
 const queryTest = () => {
-    axios.get(`http://localhost:3000/query-test/?Number=${myQuery}`)
+    axios.get(`http://localhost:3000/query-test/?`)
         .then((res) => {
             console.log(res.data)
         })
 
 }
-let myQuery = document.querySelector("#my-query").value
+// let myQuery = document.querySelector("#my-query").value
 
 let queryButton = document.getElementById('query-button')
 queryButton.addEventListener('click', queryTest)
+
 ////////////////
 //INTERMEDIATE//
 ////////////////
@@ -153,7 +160,7 @@ queryButton.addEventListener('click', queryTest)
 /* 
     Back in the ohMy function on Problem 5, replace the console log in the promise's callback with a for loop that loops over res.data. 
 
-    On each iteration of the loop, create a new p element. Set its textContent equal the string at the current index (i) and then append the new p element onto the document's body. 
+    On each iteration of the loop, create a new p element. Set its textContent equal to the string at the current index (i) and then append the new p element onto the document's body. 
 */
 
 // Code in the ohMy function in Problem 5
@@ -168,8 +175,8 @@ queryButton.addEventListener('click', queryTest)
 */
 
 // Edit code in Problem 8
-
-
+// no query = 'You sent an empty query!'
+// more than one query = 'You sent more than 1 query!'
 
 ////////////
 //ADVANCED//
